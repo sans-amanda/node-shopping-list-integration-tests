@@ -52,8 +52,8 @@ describe("Recipes", function() {
         // because we create three items on app load
         expect(res.body.length).to.be.at.least(1);
         // each item should be an object with key/value pairs
-        // for `name` and `ingredients`.
-        const expectedKeys = ["name", "ingredients"];
+        // for `id`, `name` and `ingredients`.
+        const expectedKeys = ["id", "name", "ingredients"];
         res.body.forEach(function(item) {
           expect(item).to.be.a("object");
           expect(item).to.include.keys(expectedKeys);
@@ -66,25 +66,27 @@ describe("Recipes", function() {
   //  2. inspect response object and prove it has right
   //  status code and that the returned object has an `id`
   it("should add name and ingredients POST", function() {
-    const newItem = {
+    const newRecipe = {
         name: "hot chocolate",
         ingredients: ["2 tbsp cocoa", "1 cup milk", "whipped cream"]
     };
     return chai
       .request(app)
       .post("/recipes")
-      .send(newItem)
+      .send(newRecipe)
       .then(function(res) {
         expect(res).to.have.status(201);
         expect(res).to.be.json;
         expect(res.body).to.be.a("object");
-        expect(res.body).to.include.keys("name", "ingredients");
-        expect(res.body.id).to.not.equal(null);
-        // response should be deep equal to `newItem` from above if we assign
+        expect(res.body).to.include.keys("id", "name", "ingredients");
+        //expect(res.body.name).to.not.equal(null);
+        // response should be deep equal to `newRecipe` from above if we assign
         // `id` to it from `res.body.id`
-        expect(res.body).to.deep.equal(
-          Object.assign(newItem, { id: res.body.id })
-        );
+        //expect(res.body).to.deep.equal(
+        //  Object.assign(newItem, { id: res.body.id })
+        expect(res.body.name).to.equal(newRecipe.name);
+        expect(res.body.ingredients).to.be.a("array");
+        expect(res.body.ingredients).to.include.members(newRecipe.ingredients);
       });
   });
 
@@ -125,10 +127,11 @@ describe("Recipes", function() {
         // prove that the PUT request has right status code
         // and returns updated item
         .then(function(res) {
-          expect(res).to.have.status(200);
-          expect(res).to.be.json;
-          expect(res.body).to.be.a("object");
-          expect(res.body).to.deep.equal(updateData);
+          expect(res).to.have.status(204);
+          //expect(res).to.have.status(200);
+          //expect(res).to.be.json;
+          //expect(res.body).to.be.a("object");
+          //expect(res.body).to.deep.equal(updateData);
         })
     );
   });
