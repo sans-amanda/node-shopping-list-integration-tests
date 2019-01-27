@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: TsPRUGYoNq7CAggnn+ZizGt1bHOCVSUQMO0dIuBpnL8/qJnL5095uL+Rx/ey+H9SeFfVCkyV8Pdx70FFGYI080/NCCnsNk85PlEsMIcxG1cqSulAX9kPDBvpOaLabst3EG6edcuybm10u3rg+070GWC5k6chgP3sbwlPdgiWD4NZSRMlfVe4vUHW0DHK1QERUIsfVyh8Ngksm5SgIZfGJHeUPwa8Lor4nGbJ0pR/IvCJg4lbR+FfpNBo/F57DH++Vbw5DkDj96NMmcajmpHzK2wli0zw7zcD3s/kk06BXiV+MX2c+QMPh1IUJn6ei5+ZCbCsiH4neUqK0oTdbeKmotx3ipDvqyce0U1HvfQN61Z76z/Ge6aDp9Otdjpx6XjYSw2mWYadCq3JKwYOJHKdGG3B9LSfpihfT394AbY2xt1MR2+j/6CqYTzBlZ4rIyD/IdWRFBMbPNBjGTmX2vfzLdgKpkK6kxyEAPUYRyG55BUaRWNDFy70E63FZxOrs8/78Lglom8q/tWy7igKJCuz9rG8iL3Qv4CvEJFCHy6TNHmOiHqUXvj+C0vjPFuEQGOrVnkqXeYyTrlAF4MFyaS6Qj0b83s2pGfqowd4NgprzJxKjgtf1E4SvJ7+gcxW5D9/855raTOJ75/iA//jmJ/6Fd1+d0aR/tpE4YC3WCWECvM=
+  app: node-shopping-list-integration-tests
+  on: dry-cliffs-71533
+    repo: sans-amanda/node-shopping-list-integration-tests
